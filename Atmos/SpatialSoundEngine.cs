@@ -47,7 +47,7 @@ public class SpatialSoundEngine : IDisposable
     {
         if (_sources.TryGetValue(id, out var source))
         {
-            source.Position = position;
+            source.SetPosition(position);
         }
     }
 
@@ -55,7 +55,7 @@ public class SpatialSoundEngine : IDisposable
     {
         foreach (var source in _sources.Values)
         {
-            source.CalculateSpatialAudio(ListenerPosition, ListenerForward);
+            source.UpdateSpatialAudio(ListenerPosition, ListenerForward);
         }
 
         Console.WriteLine();
