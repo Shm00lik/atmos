@@ -34,15 +34,30 @@ public class SpatialSoundEngine : IDisposable
     {
         var audioReader = new AudioFileReader(filePath);
 
-        var spatialSource = new SpatialAudioSourceProvider(
-            audioSourceParams ??
-            new SpatialAudioSourceParams
+        var newParams = audioSourceParams != null
+            ? audioSourceParams with
+            {
+                SourceProvider = audioReader,
+                InitialPosition = initialPosition,
+                WaveFormat = audioReader.WaveFormat
+            }
+            : new SpatialAudioSourceParams
             {
                 SourceProvider = audioReader,
                 InitialPosition = initialPosition,
                 WaveFormat = audioReader.WaveFormat,
-            }
-        );
+            };
+
+        var spatialSource = new SpatialAudioSourceProvider(newParams);
+
+        _sources[id] = spatialSource;
+
+        _mixer.AddMixerInput(spatialSource);
+    }
+
+    public void RegisterSource(string id, SpatialAudioSourceParams audioSourceParams)
+    {
+        var spatialSource = new SpatialAudioSourceProvider(audioSourceParams);
 
         _sources[id] = spatialSource;
 
