@@ -78,8 +78,6 @@ public class SpatialSoundEngine : IDisposable
         {
             source.UpdateSpatialAudio(_listenerPosition, _listenerForward);
         }
-
-        Console.WriteLine();
     }
 
     public void UpdateListenerPosition(Vector3 listenerPosition)

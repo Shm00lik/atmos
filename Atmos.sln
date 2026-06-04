@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atmos", "Atmos\Atmos.csproj", "{C5D98E53-E2CD-4E08-8FD2-529E2BE6954D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atmos.CV", "Atmos.CV\Atmos.CV.csproj", "{52DBD3EA-FB72-4382-B04F-BC58BB1C4CF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C5D98E53-E2CD-4E08-8FD2-529E2BE6954D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D98E53-E2CD-4E08-8FD2-529E2BE6954D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D98E53-E2CD-4E08-8FD2-529E2BE6954D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DBD3EA-FB72-4382-B04F-BC58BB1C4CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DBD3EA-FB72-4382-B04F-BC58BB1C4CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DBD3EA-FB72-4382-B04F-BC58BB1C4CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DBD3EA-FB72-4382-B04F-BC58BB1C4CF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
