@@ -10,8 +10,8 @@ public class SpatialSoundEngine : IDisposable
     private readonly IWavePlayer _outputDevice;
     private readonly Dictionary<string, SpatialAudioSourceProvider> _sources = new();
 
-    public Vector3 ListenerPosition { get; set; } = Vector3.Zero;
-    public Vector3 ListenerForward { get; set; } = Directions.Forward;
+    private Vector3 _listenerPosition = Vector3.Zero;
+    private Vector3 _listenerForward = Directions.Forward;
 
     public SpatialSoundEngine(int sampleRate = 44100, int channels = 2)
     {
@@ -25,11 +25,17 @@ public class SpatialSoundEngine : IDisposable
         _outputDevice.Play();
     }
 
-    public void RegisterSource(string id, string filePath, Vector3 initialPosition)
+    public void RegisterSource(
+        string id,
+        string filePath,
+        Vector3 initialPosition,
+        SpatialAudioSourceParams? audioSourceParams = null
+    )
     {
         var audioReader = new AudioFileReader(filePath);
 
         var spatialSource = new SpatialAudioSourceProvider(
+            audioSourceParams ??
             new SpatialAudioSourceParams
             {
                 SourceProvider = audioReader,
@@ -55,10 +61,21 @@ public class SpatialSoundEngine : IDisposable
     {
         foreach (var source in _sources.Values)
         {
-            source.UpdateSpatialAudio(ListenerPosition, ListenerForward);
+            source.UpdateSpatialAudio(_listenerPosition, _listenerForward);
         }
 
         Console.WriteLine();
+    }
+
+    public void UpdateListenerPosition(Vector3 listenerPosition)
+    {
+        UpdateListenerPosition(listenerPosition, Directions.Forward);
+    }
+
+    public void UpdateListenerPosition(Vector3 listenerPosition, Vector3 listenerForward)
+    {
+        _listenerPosition = listenerPosition;
+        _listenerForward = listenerForward;
     }
 
     public void Dispose()
